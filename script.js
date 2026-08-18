@@ -1,21 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ---------- SMOOTH SCROLL ---------- */
-  const lenis = new Lenis({
-    duration: 1.2,
-    smoothWheel: true,
-    syncTouch: true,
-    wheelMultiplier: 0.9,
-    touchMultiplier: 1.1
-  });
+  /* ---------- SMOOTH SCROLL (optional — degrades gracefully if Lenis fails to load) ---------- */
+  let lenis = null;
+  if (typeof Lenis !== 'undefined' && window.gsap) {
+    try {
+      lenis = new Lenis({
+        duration: 1.2,
+        smoothWheel: true,
+        syncTouch: true,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1.1
+      });
 
-  lenis.on('scroll', ScrollTrigger.update);
+      lenis.on('scroll', ScrollTrigger.update);
 
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
 
-  gsap.ticker.lagSmoothing(0);
+      gsap.ticker.lagSmoothing(0);
+    } catch (err) {
+      console.warn('Lenis failed to initialize, falling back to native scroll.', err);
+      lenis = null;
+    }
+  }
   
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -183,4 +191,161 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 2200);
     });
   }
+
+  /* =========================================
+     PROJECT CASE-STUDY MODAL
+  ========================================= */
+  const PROJECTS = {
+    swiftupi: {
+      tag: 'React Native',
+      title: 'SwiftUPI',
+      summary: 'An offline-first UPI payment app built to keep transactions working even when the network doesn\u2019t.',
+      points: [
+        'End-to-end encryption on every transaction using AES-256-GCM and RSA-OAEP.',
+        'Offline payment routing over Bluetooth mesh when there\u2019s no internet connection.',
+        'Atomic hash claiming to prevent double-spends and race conditions during sync.',
+        'Multi-threaded test suite (JUnit 5) covering concurrent transaction edge cases.'
+      ],
+      tech: ['Java 17', 'Spring Boot', 'Bluetooth Mesh', 'AES-256-GCM', 'RSA-OAEP', 'JUnit 5'],
+      github: 'https://github.com/helloayushhh/swiftupi'
+    },
+    tanuai: {
+      tag: 'Open Source',
+      title: 'TanuAI',
+      summary: 'An AI career companion that helps track applications, prep for interviews, and stay on top of the job search.',
+      points: [
+        'Live Fastify backend deployed on Render with an in-memory store for fast iteration.',
+        'React + TypeScript frontend built with Vite, Framer Motion, and TanStack Query.',
+        'Kanban-style application tracker with drag-and-drop status columns and modal editing.',
+        'Diagnosed and fixed a PATCH route bug that was silently dropping status updates.'
+      ],
+      tech: ['React', 'TypeScript', 'Vite', 'Fastify', 'Framer Motion', 'TanStack Query'],
+      github: 'https://github.com/helloayushhh/tanu-ai'
+    },
+    gallery: {
+      tag: 'Open Source',
+      title: 'Gallery',
+      summary: 'A lightweight, self-hostable photo gallery for organizing and browsing image collections.',
+      points: [
+        'Responsive masonry grid that adapts across desktop, tablet, and mobile.',
+        'Lazy-loaded images with smooth fade-in transitions to keep scrolling fast.',
+        'Simple folder-based structure so anyone can drop in their own images and go.'
+      ],
+      tech: ['JavaScript', 'HTML/CSS', 'Lazy Loading'],
+      github: 'https://github.com/Kaifazad/Gallery'
+    },
+    metricmovies: {
+      tag: 'React · TMDB',
+      title: 'Metric Movies',
+      summary: 'A movie discovery app that pulls live data from TMDB and surfaces ratings, cast, and recommendations.',
+      points: [
+        'Search and browse movies with real-time data from The Movie Database API.',
+        'Detail pages with cast, ratings, and similar-title recommendations.',
+        'Componentized React architecture built for quick iteration on new features.'
+      ],
+      tech: ['React', 'TMDB API', 'REST'],
+      github: '#'
+    },
+    solarsystem: {
+      tag: 'Open Source',
+      title: 'Solar System',
+      summary: 'An interactive, to-scale visualization of the solar system built for the browser.',
+      points: [
+        'Real-time orbital animation with adjustable simulation speed.',
+        'Click-to-focus camera controls for inspecting individual planets.',
+        'Built entirely with vanilla JS and CSS 3D transforms — no rendering libraries.'
+      ],
+      tech: ['JavaScript', 'CSS 3D Transforms', 'Canvas'],
+      github: '#'
+    }
+  };
+
+  const modalOverlay = document.getElementById('projectModalOverlay');
+  const modalEl = document.getElementById('projectModal');
+  const modalCloseBtn = document.getElementById('modalClose');
+  const modalTag = document.getElementById('modalTag');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalSummary = document.getElementById('modalSummary');
+  const modalPoints = document.getElementById('modalPoints');
+  const modalTech = document.getElementById('modalTech');
+  const modalGithub = document.getElementById('modalGithub');
+  const modalGithubLabel = document.getElementById('modalGithubLabel');
+
+  let lastFocusedEl = null;
+
+  function openProjectModal(key) {
+    const data = PROJECTS[key];
+    if (!data || !modalOverlay) return;
+
+    modalTag.textContent = data.tag || '';
+    modalTitle.textContent = data.title || '';
+    modalSummary.textContent = data.summary || '';
+
+    modalPoints.innerHTML = '';
+    (data.points || []).forEach(point => {
+      const li = document.createElement('li');
+      li.textContent = point;
+      modalPoints.appendChild(li);
+    });
+
+    modalTech.innerHTML = '';
+    (data.tech || []).forEach(t => {
+      const span = document.createElement('span');
+      span.textContent = t;
+      modalTech.appendChild(span);
+    });
+
+    if (data.github && data.github !== '#') {
+      modalGithub.href = data.github;
+      modalGithub.style.display = 'inline-flex';
+      modalGithubLabel.textContent = 'View on GitHub';
+    } else {
+      modalGithub.style.display = 'none';
+    }
+
+    lastFocusedEl = document.activeElement;
+    modalOverlay.classList.add('open');
+    modalOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (lenis) lenis.stop();
+    modalCloseBtn.focus();
+  }
+
+  function closeProjectModal() {
+    if (!modalOverlay) return;
+    modalOverlay.classList.remove('open');
+    modalOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lenis) lenis.start();
+    if (lastFocusedEl) lastFocusedEl.focus();
+  }
+
+  document.querySelectorAll('.project-card[data-project]').forEach(card => {
+    const key = card.getAttribute('data-project');
+
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('[data-no-modal]')) return;
+      openProjectModal(key);
+    });
+
+    card.addEventListener('keydown', (e) => {
+      if (e.target.closest('[data-no-modal]')) return;
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openProjectModal(key);
+      }
+    });
+  });
+
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeProjectModal);
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeProjectModal();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('open')) {
+      closeProjectModal();
+    }
+  });
 });

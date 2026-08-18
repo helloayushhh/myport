@@ -38,43 +38,43 @@
   </div>
   <div class="allwork-grid">
 
-    <article class="project-card reveal">
+    <article class="project-card reveal" data-project="swiftupi" tabindex="0" role="button" aria-haspopup="dialog">
       <h3>SwiftUPI</h3>
       <div class="project-foot">
         <span class="tag">REACT NATIVE</span>
-        <a href="#" class="pill-btn">View Project ↗</a>
+        <a href="https://github.com/helloayushhh/swiftupi" class="pill-btn" data-no-modal>View Project ↗</a>
       </div>
     </article>
 
-    <article class="project-card reveal">
+    <article class="project-card reveal" data-project="tanuai" tabindex="0" role="button" aria-haspopup="dialog">
       <h3>TanuAI</h3>
       <div class="project-foot">
         <span class="tag">OPEN SOURCE</span>
-        <a href="#" class="pill-btn">View Project ↗</a>
+        <a href="https://github.com/helloayushhh/tanu-ai" class="pill-btn" data-no-modal>View Project ↗</a>
       </div>
     </article>
 
-    <article class="project-card reveal">
+    <article class="project-card reveal" data-project="gallery" tabindex="0" role="button" aria-haspopup="dialog">
       <h3>Gallery</h3>
       <div class="project-foot">
         <span class="tag">OPEN SOURCE</span>
-        <a href="https://github.com/Kaifazad/Gallery" class="pill-btn">View Project ↗</a>
+        <a href="https://github.com/Kaifazad/Gallery" class="pill-btn" data-no-modal>View Project ↗</a>
       </div>
     </article>
 
-    <article class="project-card reveal">
+    <article class="project-card reveal" data-project="metricmovies" tabindex="0" role="button" aria-haspopup="dialog">
       <h3>Metric Movies</h3>
       <div class="project-foot">
         <span class="tag">REACT · TMDB</span>
-        <a href="#" class="pill-btn">View Project ↗</a>
+        <a href="#" class="pill-btn" data-no-modal>View Project ↗</a>
       </div>
     </article>
 
-    <article class="project-card reveal">
+    <article class="project-card reveal" data-project="solarsystem" tabindex="0" role="button" aria-haspopup="dialog">
       <h3>Solar System</h3>
       <div class="project-foot">
         <span class="tag">OPEN SOURCE</span>
-        <a href="#" class="pill-btn">View Project ↗</a>
+        <a href="#" class="pill-btn" data-no-modal>View Project ↗</a>
       </div>
     </article>
 
@@ -86,10 +86,7 @@
   <div class="contact-grid">
     <div class="contact-copy reveal">
       <h2 class="section-title">Let's talk.</h2>
-      <p>Have an idea?</p>
-      <p>A business that needs a better website?</p>
-      <p>A product problem, or simply something interesting to discuss?</p>
-      <p>I'm always up for a good conversation.</p>
+      <p>Have an idea, a business that needs a better website, a product problem, or simply something interesting to discuss? I'm always up for a good conversation.</p>
       <div class="socials">
         <a href="https://www.linkedin.com/in/ayushpandeysurya/" class="social-btn" aria-label="LinkedIn">in</a>
         <a href="https://github.com/helloayushhh" class="social-btn" aria-label="GitHub">
@@ -126,16 +123,16 @@
       <div class="fl-group">
         <span class="fl-label">Quick links</span>
         <div class="fl-pills">
-          <a href="#home" class="fl-pill">Home</a>
-          <a href="#about" class="fl-pill">About Me</a>
-          <a href="#services" class="fl-pill">Services</a>
+          <a href="index.html#home" class="fl-pill">Home</a>
+          <a href="index.html#about" class="fl-pill">About Me</a>
+          <a href="index.html#services" class="fl-pill">Services</a>
           <a href="works.html" class="fl-pill">Works</a>
           <a href="#contact" class="fl-pill">Contact</a>
         </div>
       </div>
       <div class="fl-group fl-contact">
         <span class="fl-label">Say hello</span>
-        <a href="mailto:itzkaifazad@gmail.com" class="fl-email">ayushpandeysurya@gmail.com</a>
+        <a href="mailto:ayushpandeysurya@gmail.com" class="fl-email">ayushpandeysurya@gmail.com</a>
       </div>
     </div>
   </div>
@@ -145,6 +142,22 @@
     <span class="mark-since">CURIOUS. RESTLESS. BUILDING.</span>
   </div>
 </footer>
+
+<!-- PROJECT CASE-STUDY MODAL -->
+<div class="project-modal-overlay" id="projectModalOverlay" aria-hidden="true">
+  <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <span class="modal-tag" id="modalTag"></span>
+    <h3 class="modal-title" id="modalTitle"></h3>
+    <p class="modal-summary" id="modalSummary"></p>
+    <ul class="modal-points" id="modalPoints"></ul>
+    <div class="modal-tech" id="modalTech"></div>
+    <a href="#" class="modal-github" id="modalGithub" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a10.9 10.9 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .3.2.66.79.55A10.99 10.99 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+      <span id="modalGithubLabel">View on GitHub</span>
+    </a>
+  </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>

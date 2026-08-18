@@ -373,10 +373,15 @@ input,textarea{font-family:inherit;}
   flex-direction:column;
   justify-content:space-between;
   transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+  cursor:pointer;
 }
 .project-card:hover{
   transform:translateY(-6px);
   box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+.project-card:focus-visible{
+  outline:2px solid var(--accent-mint);
+  outline-offset:4px;
 }
 .project-card h3{
   font-size:40px;
@@ -404,6 +409,8 @@ input,textarea{font-family:inherit;}
   font-size:15px;
   transition:transform .2s var(--ease);
   display:inline-block;
+  position:relative;
+  z-index:2;
 }
 .pill-btn:hover{transform:scale(1.05);}
 
@@ -557,9 +564,9 @@ input,textarea{font-family:inherit;}
 .footer-hero-inner{
   position:relative;
   z-index:2;
-  max-width:900px;
-  padding-top:150px;
   width:100%;
+  max-width:none;
+  padding-top:0;
 }
 .footer-headline{
   margin:0;
@@ -579,13 +586,6 @@ input,textarea{font-family:inherit;}
   display: flex;
   gap: 64px;
   margin: 0;
-}
-.footer-hero-inner {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: none;
-  padding-top: 0;
 }
 .fl-label{
   display:block;
@@ -654,6 +654,135 @@ input,textarea{font-family:inherit;}
   gap:32px;
 }
 
+/* =========================================
+   PROJECT CASE-STUDY MODAL
+========================================= */
+.project-modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(10,10,10,0.6);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  z-index:2000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .3s var(--ease), visibility .3s var(--ease);
+}
+.project-modal-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+.project-modal{
+  position:relative;
+  width:100%;
+  max-width:560px;
+  max-height:88vh;
+  overflow-y:auto;
+  background:var(--surface-black);
+  color:var(--text-on-dark);
+  border-radius:var(--radius-lg);
+  padding:48px;
+  transform:translateY(24px) scale(.97);
+  opacity:0;
+  transition:transform .35s var(--ease), opacity .35s var(--ease);
+}
+.project-modal-overlay.open .project-modal{
+  transform:translateY(0) scale(1);
+  opacity:1;
+}
+.modal-close{
+  position:absolute;
+  top:20px;
+  right:20px;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:var(--pill-bg);
+  color:var(--text-primary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  transition:transform .2s var(--ease);
+}
+.modal-close:hover{transform:scale(1.08) rotate(90deg);}
+.modal-tag{
+  display:inline-block;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#999;
+  margin-bottom:14px;
+}
+.modal-title{
+  font-size:40px;
+  font-weight:800;
+  margin:0 0 16px 0;
+  letter-spacing:-0.02em;
+  padding-right:40px;
+}
+.modal-summary{
+  font-size:17px;
+  line-height:1.5;
+  color:#c9c9c9;
+  margin:0 0 28px 0;
+}
+.modal-points{
+  list-style:none;
+  margin:0 0 32px 0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.modal-points li{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  font-size:15px;
+  line-height:1.5;
+  color:#e8e8e8;
+}
+.modal-points li::before{
+  content:'→';
+  color:var(--accent-mint);
+  flex-shrink:0;
+  font-weight:700;
+}
+.modal-tech{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:32px;
+}
+.modal-tech span{
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.04em;
+  padding:8px 14px;
+  border-radius:var(--radius-pill);
+  border:1px solid var(--border-hairline-dark);
+  color:#ddd;
+}
+.modal-github{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:var(--pill-bg);
+  color:var(--text-primary);
+  padding:14px 22px;
+  border-radius:var(--radius-pill);
+  font-weight:700;
+  font-size:15px;
+  transition:transform .2s var(--ease);
+}
+.modal-github:hover{transform:scale(1.03);}
+
 /* ===== REVEAL (fade in on enter, fade out / "disappear" on leave) ===== */
 .reveal {
   opacity: 0;
@@ -704,7 +833,7 @@ input,textarea{font-family:inherit;}
   .projects .section-title{text-align:left;}
 
   /* Footer headline centers on narrow screens */
-  
+
   .footer-hero {
     min-height: 100svh;
     padding: 80px 24px 120px;
@@ -765,6 +894,9 @@ input,textarea{font-family:inherit;}
     right: 24px;
     bottom: 20px;
   }
+
+  .project-modal{padding:36px;max-width:480px;}
+  .modal-title{font-size:32px;}
 }
 
 /* =========================================
@@ -883,4 +1015,9 @@ input,textarea{font-family:inherit;}
   .footer-marks .mark-since {
     font-size: 9px;
   }
+
+  .project-modal{padding:28px;border-radius:24px;max-height:85vh;}
+  .modal-title{font-size:28px;padding-right:32px;}
+  .modal-summary{font-size:15px;}
+  .modal-close{width:32px;height:32px;top:16px;right:16px;}
 }
