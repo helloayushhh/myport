@@ -192,7 +192,7 @@
       <input id="name" name="name" type="text" placeholder="What should I call you?" required>
       <label for="email">Email</label>
       <input id="email" name="email" type="email" placeholder="Where can I reach you?" required>
-      <label for="project">What are we building?</label>
+      <label for="project">Message</label>
       <textarea id="project" name="project" rows="4" placeholder="Tell me what's on your mind..." required></textarea>
       <button type="submit" class="submit-btn">Send it →</button>
     </form>
@@ -253,7 +253,15 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+  emailjs.init({
+    publicKey: "AqWbq4G_LJaWZ2gjD"
+  });
+</script>
+
 <script src="script.js"></script>
 </body>
 </html>

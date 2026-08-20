@@ -189,23 +189,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ---------- CONTACT FORM (demo submit) ---------- */
+  /* ---------- CONTACT FORM ---------- */
   const form = document.getElementById('contactForm');
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const btn = form.querySelector('.submit-btn');
       const original = btn.textContent;
-      btn.textContent = 'Sent ✓';
+
+      btn.textContent = 'Sending...';
       btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.disabled = false;
-        form.reset();
-      }, 2200);
+
+      emailjs.sendForm(
+        'service_vbdsjdm',
+        'template_x2qvkj8',
+        form
+      )
+     .then(() => {
+        btn.textContent = 'Sent ✓';
+
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.disabled = false;
+          form.reset();
+        }, 2200);
+      })
+      .catch((error) => {
+        console.error('EmailJS Error:', error);
+
+        btn.textContent = 'Try again';
+
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.disabled = false;
+        }, 2200);
+      });
     });
   }
-
   /* =========================================
      PROJECT CASE-STUDY MODAL
   ========================================= */
