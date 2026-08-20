@@ -86,7 +86,10 @@
   <div class="contact-grid">
     <div class="contact-copy reveal">
       <h2 class="section-title">Let's talk.</h2>
-      <p>Have an idea, a business that needs a better website, a product problem, or simply something interesting to discuss? I'm always up for a good conversation.</p>
+      <p>Have an idea?</p>
+      <p>A business that needs a better website?</p>
+      <p>A product problem, or simply something interesting to discuss?</p>
+      <p>I'm always up for a good conversation.</p>
       <div class="socials">
         <a href="https://www.linkedin.com/in/ayushpandeysurya/" class="social-btn" aria-label="LinkedIn">in</a>
         <a href="https://github.com/helloayushhh" class="social-btn" aria-label="GitHub">
@@ -100,7 +103,7 @@
       <input id="name" name="name" type="text" placeholder="What should I call you?" required>
       <label for="email">Email</label>
       <input id="email" name="email" type="email" placeholder="Where can I reach you?" required>
-      <label for="project">What are we building?</label>
+      <label for="project">Message</label>
       <textarea id="project" name="project" rows="4" placeholder="Tell me what's on your mind..." required></textarea>
       <button type="submit" class="submit-btn">Send it →</button>
     </form>
@@ -123,9 +126,9 @@
       <div class="fl-group">
         <span class="fl-label">Quick links</span>
         <div class="fl-pills">
-          <a href="index.html#home" class="fl-pill">Home</a>
-          <a href="index.html#about" class="fl-pill">About Me</a>
-          <a href="index.html#services" class="fl-pill">Services</a>
+          <a href="#home" class="fl-pill">Home</a>
+          <a href="#about" class="fl-pill">About Me</a>
+          <a href="#services" class="fl-pill">Services</a>
           <a href="works.html" class="fl-pill">Works</a>
           <a href="#contact" class="fl-pill">Contact</a>
         </div>
@@ -161,7 +164,15 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+  emailjs.init({
+    publicKey: "AqWbq4G_LJaWZ2gjD"
+  });
+</script>
+
 <script src="script.js"></script>
 </body>
 </html>
