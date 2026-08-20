@@ -681,7 +681,10 @@ input,textarea{font-family:inherit;}
   width:100%;
   max-width:560px;
   max-height:88vh;
+  max-height:88dvh;
   overflow-y:auto;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
   background:var(--surface-black);
   color:var(--text-on-dark);
   border-radius:var(--radius-lg);
@@ -791,6 +794,48 @@ input,textarea{font-family:inherit;}
 }
 
 /* =========================================
+   TOUCH DEVICE ADAPTATIONS
+   Desktop :hover effects don't map to touch — on many mobile browsers a tap
+   triggers :hover and it stays "stuck" until the user taps elsewhere (e.g. a
+   lifted project card, or a scaled-up button, frozen after the tap that
+   opened the modal or navigated away). Neutralize those on touch/coarse
+   pointers and replace with a real, immediate :active press response.
+========================================= */
+@media (hover: none), (pointer: coarse) {
+  .nav-toggle:hover{transform:none;}
+  .nav-toggle:active{transform:scale(0.92);}
+
+  .nav-link:hover{opacity:1;}
+  .nav-link:active{opacity:.6;}
+
+  .project-card:hover{transform:none;box-shadow:none;}
+  .project-card:active{transform:scale(0.985);}
+
+  .pill-btn:hover{transform:none;}
+  .pill-btn:active{transform:scale(0.94);}
+
+  .service-list li:hover{padding-left:0;}
+  .service-list li:active{padding-left:8px;}
+
+  .social-btn:hover{transform:none;background:#e6e4dd;}
+  .social-btn:active{transform:scale(0.92);background:#dcdad2;}
+
+  .fl-pill:hover{background:var(--pill-bg);color:var(--text-primary);border:1px solid transparent;}
+  .fl-pill:active{transform:scale(0.94);}
+
+  .fl-email:hover{border-color:transparent;}
+  .fl-email:active{border-color:var(--text-on-dark);}
+
+  .modal-close:hover{transform:none;}
+  .modal-close:active{transform:scale(0.9);}
+
+  .modal-github:hover{transform:none;}
+  .modal-github:active{transform:scale(0.95);}
+
+  .submit-btn:active{transform:scale(0.97);}
+}
+
+/* =========================================
    RESPONSIVE — LAPTOP
 ========================================= */
 @media (max-width:1200px){
@@ -803,6 +848,16 @@ input,textarea{font-family:inherit;}
    RESPONSIVE — TABLET
 ========================================= */
 @media (max-width:900px){
+  .nav{top:calc(24px + env(safe-area-inset-top, 0px));}
+  .progress-pill{bottom:calc(17px + env(safe-area-inset-bottom, 0px));}
+  .nav-toggle{width:44px;height:44px;}
+  .dots{font-size:16px;}
+
+  /* Anchor-jumping to a section (nav links, footer quick-links) was landing
+     content flush under the fixed nav pill, tucking headings behind it.
+     Give every anchor target enough top clearance to land below the pill. */
+  .section,#contact,#projects,#services,#about{scroll-margin-top:110px;}
+
   .section{padding:80px 24px;}
   .about-grid,.services-grid,.contact-grid,.projects-grid,.allwork-grid{
     grid-template-columns:1fr;
@@ -816,7 +871,7 @@ input,textarea{font-family:inherit;}
   .footer-links{gap:36px;}
   .fl-pills{max-width:280px;}
 
-  .hero{padding:0 24px;}
+  .hero{padding:0 24px;min-height:100svh;}
   .hero-headline{font-size:clamp(64px, 12vw, 110px);letter-spacing:-0.07em;}
   .hero-tagline{margin-top:36px;font-size:clamp(30px, 5vw, 48px);}
   .accent-leaf{font-size:28px;margin-left:7px;transform:translateY(-20px) rotate(-12deg);}
@@ -826,6 +881,8 @@ input,textarea{font-family:inherit;}
   /* About: center on narrow screens to match reference */
   .about-grid{justify-items:center;text-align:center;}
   .about-copy p{max-width:560px;}
+  .about-photo{margin-top:32px;}
+  .about-copy{padding-top:0;}
 
   /* Projects: stack + center heading/see-all on narrow screens */
   .projects-head{flex-direction:column;align-items:center;text-align:center;gap:16px;}
@@ -897,6 +954,12 @@ input,textarea{font-family:inherit;}
 
   .project-modal{padding:36px;max-width:480px;}
   .modal-title{font-size:32px;}
+
+  /* Contact: form must never exceed the viewport, and the stacked gap
+     was tuned for the desktop 2-column layout — way too large stacked. */
+  .contact-grid{gap:56px;}
+  .contact-copy .section-title{font-size:44px;margin-bottom:0;}
+  .contact-form{width:100% !important;}
 }
 
 /* =========================================
@@ -913,7 +976,7 @@ input,textarea{font-family:inherit;}
   .mark-copyright{font-size:25px;}
   .mark-since{font-size:9px;letter-spacing:0.02em;}
   .hero-scroll-cue{bottom:34px;font-size:9px;letter-spacing:2px;}
-  .progress-pill{bottom:10px;width:46px;height:6px;}
+  .progress-pill{bottom:calc(10px + env(safe-area-inset-bottom, 0px));width:46px;height:6px;}
 
   /* Projects heading fully centered on phones, incl. section title */
   .projects .section-title{text-align:center;}
@@ -1016,8 +1079,15 @@ input,textarea{font-family:inherit;}
     font-size: 9px;
   }
 
-  .project-modal{padding:28px;border-radius:24px;max-height:85vh;}
+  .project-modal{padding:28px;border-radius:24px;max-height:85vh;max-height:85dvh;}
   .modal-title{font-size:28px;padding-right:32px;}
   .modal-summary{font-size:15px;}
-  .modal-close{width:32px;height:32px;top:16px;right:16px;}
+  .modal-close{width:40px;height:40px;top:16px;right:16px;}
+
+  /* Project cards: desktop padding/type-scale was too heavy for a 320-390px
+     card width — tighten proportions and let the footer wrap if it must
+     rather than squeezing the tag against the button. */
+  .project-card{padding:28px;min-height:260px;}
+  .project-card h3{font-size:clamp(28px, 8vw, 36px);}
+  .project-foot{flex-wrap:wrap;gap:12px;}
 }

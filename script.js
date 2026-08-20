@@ -1,15 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ---------- SMOOTH SCROLL (optional — degrades gracefully if Lenis fails to load) ---------- */
+  /* ---------- DEVICE DETECTION ----------
+     Lenis's touch-sync mode re-implements scrolling via JS/RAF, which on real
+     phones (especially iOS Safari) feels laggy and disconnected compared to
+     native momentum scrolling. Desktop (mouse/trackpad wheel) is where Lenis
+     actually adds value — so we only enable it there and let touch devices
+     use the browser's native scroll, which is what "buttery smooth" means
+     on a phone. */
+  const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- SMOOTH SCROLL (desktop/pointer devices only) ---------- */
   let lenis = null;
-  if (typeof Lenis !== 'undefined' && window.gsap) {
+  if (!isTouchDevice && typeof Lenis !== 'undefined' && window.gsap) {
     try {
       lenis = new Lenis({
         duration: 1.2,
         smoothWheel: true,
-        syncTouch: true,
-        wheelMultiplier: 0.9,
-        touchMultiplier: 1.1
+        syncTouch: false,
+        wheelMultiplier: 0.9
       });
 
       lenis.on('scroll', ScrollTrigger.update);
@@ -24,8 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
       lenis = null;
     }
   }
-  
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- NAV: unified dropdown everywhere (incl. footer) ---------- */
   const navPill = document.getElementById('navPill');
@@ -105,9 +112,16 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
 
-  /* ---------- SCROLL REVEALS: slow fade in + slow fade out ---------- */
+  /* ---------- SCROLL REVEALS: slow fade in + slow fade out (snappier on touch) ---------- */
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
+
+    // On touch devices, fast flick-scrolling can quickly outrun slow reveal
+    // tweens, making content visibly lag behind the finger. Keep the desktop
+    // timings (they were tuned for mouse-wheel pacing) but move faster on touch.
+    const revealIn = isTouchDevice ? 0.5 : 1.2;
+    const revealOut = isTouchDevice ? 0.6 : 2.2;
+    const revealDistance = isTouchDevice ? 16 : 25;
 
     document.querySelectorAll('.reveal').forEach((el) => {
       ScrollTrigger.create({
@@ -119,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
           gsap.to(el, {
             opacity: 1,
             y: 0,
-            duration: 1.2,
+            duration: revealIn,
             ease: 'power2.out'
           });
         },
@@ -127,23 +141,23 @@ document.addEventListener('DOMContentLoaded', () => {
           gsap.to(el, {
             opacity: 1,
             y: 0,
-            duration: 1.2,
+            duration: revealIn,
             ease: 'power2.out'
           });
         },
         onLeave: () => {
           gsap.to(el, {
             opacity: 0,
-            y: -25,
-            duration: 2.2,
+            y: -revealDistance,
+            duration: revealOut,
             ease: 'power2.out'
           });
         },
         onLeaveBack: () => {
           gsap.to(el, {
             opacity: 0,
-            y: 25,
-            duration: 2.2,
+            y: revealDistance,
+            duration: revealOut,
             ease: 'power2.out'
           });
         }
