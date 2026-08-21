@@ -230,67 +230,213 @@ document.addEventListener('DOMContentLoaded', () => {
      PROJECT CASE-STUDY MODAL
   ========================================= */
   const PROJECTS = {
+
     swiftupi: {
-      tag: 'React Native',
+      tag: 'Java · Spring Boot · Fintech',
       title: 'SwiftUPI',
-      summary: 'An offline-first UPI payment app built to keep transactions working even when the network doesn\u2019t.',
+      summary: 'An attempt to rethink UPI payments for situations where internet connectivity is unavailable, using Bluetooth Mesh as the communication layer.',
       points: [
-        'End-to-end encryption on every transaction using AES-256-GCM and RSA-OAEP.',
-        'Offline payment routing over Bluetooth mesh when there\u2019s no internet connection.',
-        'Atomic hash claiming to prevent double-spends and race conditions during sync.',
-        'Multi-threaded test suite (JUnit 5) covering concurrent transaction edge cases.'
+        'Explored how an offline payment flow could work without depending on a live internet connection.',
+        'Built the backend using Java, Spring Boot, and REST APIs.',
+        'Worked on transaction security using AES-256-GCM and RSA-OAEP.',
+        'Designed around offline communication through Bluetooth Mesh and considered transaction consistency during synchronization.',
+        'Used JUnit 5 to test the system and its transaction behaviour.'
       ],
-      tech: ['Java 17', 'Spring Boot', 'Bluetooth Mesh', 'AES-256-GCM', 'RSA-OAEP', 'JUnit 5'],
+      tech: ['Java', 'Spring Boot', 'REST APIs', 'Bluetooth Mesh', 'AES-256-GCM', 'RSA-OAEP', 'JUnit 5'],
       github: 'https://github.com/helloayushhh/swiftupi'
     },
+
     tanuai: {
-      tag: 'Open Source',
-      title: 'TanuAI',
-      summary: 'An AI career companion that helps track applications, prep for interviews, and stay on top of the job search.',
+      tag: 'React · TypeScript · AI',
+      title: 'Tanu AI',
+      summary: 'An AI career companion built around a simple problem: keeping job search, applications, resumes, and career preparation in one place.',
       points: [
-        'Live Fastify backend deployed on Render with an in-memory store for fast iteration.',
-        'React + TypeScript frontend built with Vite, Framer Motion, and TanStack Query.',
-        'Kanban-style application tracker with drag-and-drop status columns and modal editing.',
-        'Diagnosed and fixed a PATCH route bug that was silently dropping status updates.'
+        'Defined the product around the everyday workflow of someone actively looking for opportunities.',
+        'Built the frontend with React and TypeScript and the backend with Fastify.',
+        'Integrated OpenRouter to bring AI capabilities into the product.',
+        'Handled deployment across Render and Vercel.',
+        'Worked across both the product experience and the underlying implementation rather than treating the interface as a standalone piece.'
       ],
-      tech: ['React', 'TypeScript', 'Vite', 'Fastify', 'Framer Motion', 'TanStack Query'],
+      tech: ['React', 'TypeScript', 'Fastify', 'OpenRouter', 'Render', 'Vercel'],
       github: 'https://github.com/helloayushhh/tanu-ai'
     },
-    gallery: {
-      tag: 'Open Source',
-      title: 'Gallery',
-      summary: 'A lightweight, self-hostable photo gallery for organizing and browsing image collections.',
+
+    culinaryai: {
+      tag: 'React · Firebase · AI',
+      title: 'CulinaryAI',
+      summary: 'An AI food platform exploring how AI can make a food-focused product more useful and personalized.',
       points: [
-        'Responsive masonry grid that adapts across desktop, tablet, and mobile.',
-        'Lazy-loaded images with smooth fade-in transitions to keep scrolling fast.',
-        'Simple folder-based structure so anyone can drop in their own images and go.'
+        'Started with the idea of combining food discovery with AI rather than building another static food website.',
+        'Built the product interface using React and JavaScript.',
+        'Used Firebase as the application backend.',
+        'Integrated AI capabilities into the product experience.',
+        'Worked across the product idea, interface, and implementation.'
       ],
-      tech: ['JavaScript', 'HTML/CSS', 'Lazy Loading'],
-      github: 'https://github.com/Kaifazad/Gallery'
+      tech: ['React', 'Firebase', 'JavaScript', 'AI Integration'],
+      github: 'https://culinaryai0.netlify.app/'
     },
-    metricmovies: {
-      tag: 'React · TMDB',
-      title: 'Metric Movies',
-      summary: 'A movie discovery app that pulls live data from TMDB and surfaces ratings, cast, and recommendations.',
+
+    placementanalytics: {
+      tag: 'Python · SQL · Power BI',
+      title: 'Placement Analytics Dashboard',
+      summary: 'A data project built to turn placement data into something that can be explored and understood instead of being left as raw numbers.',
       points: [
-        'Search and browse movies with real-time data from The Movie Database API.',
-        'Detail pages with cast, ratings, and similar-title recommendations.',
-        'Componentized React architecture built for quick iteration on new features.'
+        'Started from the question of what placement data can actually tell us about performance.',
+        'Used Python for working with the data and SQL for querying it.',
+        'Built a Power BI dashboard to present placement insights.',
+        'Focused on turning data into findings that can support better understanding and decisions.',
+        'This project reflects how I approach analytical problems: structure the data first, then look for the story inside it.'
       ],
-      tech: ['React', 'TMDB API', 'REST'],
+      tech: ['Python', 'SQL', 'Power BI'],
+      github: 'https://github.com/helloayushhh/placement-analytics-dashboard'
+    },
+
+    proresume: {
+      tag: 'HTML · CSS · JavaScript',
+      title: 'Pro Resume',
+      summary: 'A resume builder focused on making it easier to create an ATS-friendly resume while seeing the result as it is being built.',
+      points: [
+        'Focused on the problem of creating a structured resume without repeatedly switching between editing and previewing.',
+        'Built the experience using HTML, CSS, and JavaScript.',
+        'Designed the product around ATS-friendly resume creation.',
+        'Worked on both the interface and the interaction logic behind the builder.'
+      ],
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      github: 'https://github.com/helloayushhh/pro-resume'
+    },
+
+    smartlogistics: {
+      tag: 'Python · MySQL · Optimization',
+      title: 'Smart Logistics Optimizer',
+      summary: 'A logistics project focused on the problem of planning deliveries more efficiently through route optimization and data.',
+      points: [
+        'Started with the operational problem of planning delivery routes more effectively.',
+        'Used Python to work on the optimization problem.',
+        'Used MySQL for storing and working with the underlying data.',
+        'Focused on route optimization rather than simply displaying delivery information.',
+        'The project reflects my interest in solving operational problems through a combination of data and software.'
+      ],
+      tech: ['Python', 'MySQL'],
+      github: 'https://github.com/helloayushhh/smart-logistics-optimizer'
+    },
+
+    editkaro: {
+      tag: 'JavaScript · GSAP · Automation',
+      title: 'EditKaro.in',
+      summary: 'A portfolio website for a social media marketing and video editing agency, designed to make the agency’s work itself feel like part of the pitch.',
+      points: [
+        'Built the website using HTML, CSS, and JavaScript.',
+        'Used GSAP to create motion and interaction around the portfolio experience.',
+        'Connected Google Apps Script with Google Sheets for form-related automation.',
+        'Worked on both the visual experience and the practical functionality behind the website.',
+        'The project reflects my approach to websites: the interface should communicate what the business does, not just display information.'
+      ],
+      tech: ['HTML', 'CSS', 'JavaScript', 'GSAP', 'Google Apps Script', 'Google Sheets'],
+      github: 'https://github.com/helloayushhh/editkaro.in'
+    },
+
+    dealershipleadmanagement: {
+      tag: 'Salesforce · Business Analysis',
+      title: 'Dealership Lead Management',
+      summary: 'A CRM case study exploring how a dealership could structure and improve its lead management process.',
+      points: [
+        'Started by looking at the business process rather than jumping directly into a technical solution.',
+        'Documented requirements through a Business Requirements Document (BRD).',
+        'Mapped the lead management process and identified how the workflow should move through the system.',
+        'Created wireframes to translate the process into a usable product experience.',
+        'Worked on solution design to connect the business requirement with the proposed system.'
+      ],
+      tech: ['BRD', 'Process Flow', 'Wireframing', 'Solution Design'],
+      github: 'https://github.com/helloayushhh/dealership-lead-management-salesforce-case-study'
+    },
+
+    uberfleetmanager: {
+      tag: 'Product Strategy · Dashboard',
+      title: 'Uber Fleet Manager Dashboard',
+      summary: 'A product concept focused on how fleet operations could be represented through a dashboard that helps people understand and manage what is happening across the fleet.',
+      points: [
+        'Approached the project from a product perspective rather than starting with implementation.',
+        'Worked on the product strategy behind the dashboard.',
+        'Thought through what information an operations-focused dashboard should communicate.',
+        'Created wireframes to turn the product thinking into a concrete interface.',
+        'This project shows how I move from a problem space to product structure before thinking about code.'
+      ],
+      tech: ['Product Strategy', 'Dashboard Design', 'Wireframing'],
       github: '#'
     },
-    solarsystem: {
-      tag: 'Open Source',
-      title: 'Solar System',
-      summary: 'An interactive, to-scale visualization of the solar system built for the browser.',
+
+    meeshoresellerteardown: {
+      tag: 'Product Strategy · UX',
+      title: 'Meesho Reseller Teardown',
+      summary: 'A product teardown looking at the Meesho reseller experience through the lens of growth, UX, and the journey a user takes through the product.',
       points: [
-        'Real-time orbital animation with adjustable simulation speed.',
-        'Click-to-focus camera controls for inspecting individual planets.',
-        'Built entirely with vanilla JS and CSS 3D transforms — no rendering libraries.'
+        'Looked at the product as a user journey rather than analysing isolated screens.',
+        'Studied the experience from a product growth perspective.',
+        'Performed UX analysis to understand how the experience guides users.',
+        'Mapped the user journey to identify how different parts of the product connect.',
+        'This project demonstrates how I analyse an existing product before suggesting what could be improved.'
       ],
-      tech: ['JavaScript', 'CSS 3D Transforms', 'Canvas'],
+      tech: ['Product Strategy', 'UX Analysis', 'User Journey Mapping'],
       github: '#'
+    },
+
+    mutualfundanalytics: {
+      tag: 'Python · SQL · Data Analytics',
+      title: 'MutualFundAnalytics',
+      summary: 'A capstone data analytics project built during my Data Analyst internship work to explore mutual fund data through analysis.',
+      points: [
+        'Worked on the project as a Data Analyst internship capstone.',
+        'Used Python to work with and analyse the data.',
+        'Used SQL to query and investigate the dataset.',
+        'Focused on extracting useful information from financial data rather than simply presenting raw records.',
+        'This project represents my approach to analytical work: understand the data, investigate it, and turn it into something useful.'
+      ],
+      tech: ['Python', 'SQL'],
+      github: 'https://github.com/helloayushhh/mutual-fund-analytics'
+    },
+
+    inventorymanagement: {
+      tag: 'Java · MySQL · Desktop App',
+      title: 'Inventory Management System',
+      summary: 'An inventory management application built to handle product and stock-related operations through a Java desktop application.',
+      points: [
+        'Built the application using Java and Java Swing.',
+        'Connected the application to MySQL using JDBC.',
+        'Designed the system around inventory management workflows.',
+        'Implemented Role-Based Access Control (RBAC) to separate access based on user roles.',
+        'Worked across the application interface, database connection, and access control.'
+      ],
+      tech: ['Java', 'MySQL', 'JDBC', 'Java Swing', 'RBAC'],
+      github: 'https://github.com/helloayushhh/inventory-management-system'
+    },
+
+    gogym: {
+      tag: 'HTML · CSS · JavaScript',
+      title: 'Go Gym',
+      summary: 'A responsive fitness website built as a practical exercise in creating a complete web experience across different screen sizes.',
+      points: [
+        'Built the website using HTML, CSS, and JavaScript.',
+        'Used Bootstrap to handle responsive layouts.',
+        'Focused on making the experience work across different screen sizes.',
+        'Worked on the structure, styling, and interaction of the website.'
+      ],
+      tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+      github: 'https://github.com/helloayushhh/go-gym-fitness'
+    },
+
+    apsportfolio: {
+      tag: 'HTML · CSS · JavaScript',
+      title: 'APS Portfolio',
+      summary: 'My personal portfolio — built not just to display projects, but to show how I think, what I build, and how I approach turning ideas into usable products.',
+      points: [
+        'Built the portfolio from scratch using HTML, CSS, and JavaScript.',
+        'Designed the experience around projects, product thinking, technical work, and personal work.',
+        'Focused on making the portfolio itself demonstrate my approach to building digital experiences.',
+        'Continuously iterate on the design, interaction, responsiveness, and functionality as the portfolio evolves.',
+        'The portfolio is itself a work sample: the way I structure and present it is part of what I want a recruiter to evaluate.'
+      ],
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      github: 'https://github.com/helloayushhh/myport'
     }
   };
 
@@ -357,18 +503,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.project-card[data-project]').forEach(card => {
     const key = card.getAttribute('data-project');
 
-    card.addEventListener('click', (e) => {
-      if (e.target.closest('[data-no-modal]')) return;
-      openProjectModal(key);
-    });
+    const trigger = card.querySelector('.project-trigger');
 
-    card.addEventListener('keydown', (e) => {
-      if (e.target.closest('[data-no-modal]')) return;
-      if (e.key === 'Enter' || e.key === ' ') {
+    if (trigger) {
+      trigger.addEventListener('click', (e) => {
         e.preventDefault();
+        e.stopPropagation();
         openProjectModal(key);
-      }
-    });
+      });
+    }
   });
 
   if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeProjectModal);
