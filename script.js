@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (window.gsap) {
+      gsap.from('.hero-subtitle', { opacity: 0, y: 15, duration: 0.8, ease: 'power2.out', delay: 0.65 });
       gsap.from('.hero-tagline', { opacity: 0, y: 25, duration: 0.9, ease: 'power3.out', delay: 0.8 });
       gsap.from('.hero-marks', { opacity: 0, y: 15, duration: 0.8, ease: 'power2.out', delay: 1 });
       gsap.from('.hero-scroll-cue', { opacity: 0, duration: 0.8, delay: 1.2 });
@@ -243,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Used JUnit 5 to test the system and its transaction behaviour.'
       ],
       tech: ['Java', 'Spring Boot', 'REST APIs', 'Bluetooth Mesh', 'AES-256-GCM', 'RSA-OAEP', 'JUnit 5'],
+      learned: 'Learned how much complexity offline-first systems add — especially around conflict resolution and security without a live connection.',
       github: 'https://github.com/helloayushhh/swiftupi'
     },
 
@@ -258,6 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Worked across both the product experience and the underlying implementation rather than treating the interface as a standalone piece.'
       ],
       tech: ['React', 'TypeScript', 'Fastify', 'OpenRouter', 'Render', 'Vercel'],
+      learned: 'Learned how to scope an AI product around a real daily workflow instead of just bolting AI onto a UI.',
       github: 'https://github.com/helloayushhh/tanu-ai'
     },
 
@@ -273,6 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Worked across the product idea, interface, and implementation.'
       ],
       tech: ['React', 'Firebase', 'JavaScript', 'AI Integration'],
+      learned: 'Learned how to integrate AI into a product experience without letting it overshadow the core UX.',
       github: 'https://culinaryai0.netlify.app/'
     },
 
@@ -288,6 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'This project reflects how I approach analytical problems: structure the data first, then look for the story inside it.'
       ],
       tech: ['Python', 'SQL', 'Power BI'],
+      learned: 'Learned that most of the value in a data project comes from asking better questions, not from the dashboard itself.',
       github: 'https://github.com/helloayushhh/placement-analytics-dashboard'
     },
 
@@ -302,6 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Worked on both the interface and the interaction logic behind the builder.'
       ],
       tech: ['HTML', 'CSS', 'JavaScript'],
+      learned: 'Learned how much UX friction disappears when you let people preview changes live instead of blindly editing.',
       github: 'https://github.com/helloayushhh/pro-resume'
     },
 
@@ -317,6 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'The project reflects my interest in solving operational problems through a combination of data and software.'
       ],
       tech: ['Python', 'MySQL'],
+      learned: 'Learned how quickly a simple routing problem turns into a real optimization challenge at scale.',
       github: 'https://github.com/helloayushhh/smart-logistics-optimizer'
     },
 
@@ -332,6 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'The project reflects my approach to websites: the interface should communicate what the business does, not just display information.'
       ],
       tech: ['HTML', 'CSS', 'JavaScript', 'GSAP', 'Google Apps Script', 'Google Sheets'],
+      learned: 'Learned how much motion and pacing on a site can do as much selling as the copy itself.',
       github: 'https://github.com/helloayushhh/editkaro.in'
     },
 
@@ -347,6 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Worked on solution design to connect the business requirement with the proposed system.'
       ],
       tech: ['BRD', 'Process Flow', 'Wireframing', 'Solution Design'],
+      learned: 'Learned how much clearer a technical solution becomes once the business process is mapped out first.',
       github: 'https://github.com/helloayushhh/dealership-lead-management-salesforce-case-study'
     },
 
@@ -362,6 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'This project shows how I move from a problem space to product structure before thinking about code.'
       ],
       tech: ['Product Strategy', 'Dashboard Design', 'Wireframing'],
+      learned: 'Learned how to design around what an operator needs to see first, not just what data happens to be available.',
       github: '#'
     },
 
@@ -377,6 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'This project demonstrates how I analyse an existing product before suggesting what could be improved.'
       ],
       tech: ['Product Strategy', 'UX Analysis', 'User Journey Mapping'],
+      learned: 'Learned to evaluate a product by the journey it creates, not just the individual screens.',
       github: '#'
     },
 
@@ -392,6 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'This project represents my approach to analytical work: understand the data, investigate it, and turn it into something useful.'
       ],
       tech: ['Python', 'SQL'],
+      learned: 'Learned how to turn a broad, messy dataset into a focused, decision-ready analysis.',
       github: 'https://github.com/helloayushhh/mutual-fund-analytics'
     },
 
@@ -407,6 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Worked across the application interface, database connection, and access control.'
       ],
       tech: ['Java', 'MySQL', 'JDBC', 'Java Swing', 'RBAC'],
+      learned: 'Learned how much role-based access control changes the way you design an application\u2019s core logic.',
       github: 'https://github.com/helloayushhh/inventory-management-system'
     },
 
@@ -421,6 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Worked on the structure, styling, and interaction of the website.'
       ],
       tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+      learned: 'Learned the fundamentals of building layouts that actually hold up across screen sizes, not just look fine on one.',
       github: 'https://github.com/helloayushhh/go-gym-fitness'
     },
 
@@ -436,6 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'The portfolio is itself a work sample: the way I structure and present it is part of what I want a recruiter to evaluate.'
       ],
       tech: ['HTML', 'CSS', 'JavaScript'],
+      learned: 'Learned that a portfolio is itself a product — worth iterating on with the same rigor as anything else I build.',
       github: 'https://github.com/helloayushhh/myport'
     }
   };
@@ -448,6 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalSummary = document.getElementById('modalSummary');
   const modalPoints = document.getElementById('modalPoints');
   const modalTech = document.getElementById('modalTech');
+  const modalLearned = document.getElementById('modalLearned');
   const modalGithub = document.getElementById('modalGithub');
   const modalGithubLabel = document.getElementById('modalGithubLabel');
 
@@ -474,6 +490,15 @@ document.addEventListener('DOMContentLoaded', () => {
       span.textContent = t;
       modalTech.appendChild(span);
     });
+
+    if (modalLearned) {
+      if (data.learned) {
+        modalLearned.textContent = data.learned;
+        modalLearned.style.display = 'block';
+      } else {
+        modalLearned.style.display = 'none';
+      }
+    }
 
     if (data.github && data.github !== '#') {
       modalGithub.href = data.github;
